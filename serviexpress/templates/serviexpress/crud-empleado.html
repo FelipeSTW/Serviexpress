@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<!-- Form -->
+	<form method="POST">
+		{% csrf_token %}
+		<input class="input-name" type="text" placeholder="Nombre">
+		<input class="input-lastname" type="text" placeholder="Apellido">
+		<input class="input-rut" type="text" placeholder="RUT">
+		<button class="button-add">AGREGAR</button>
+	</form>
+	<!-- List -->
+	{% for employee in employees %}
+		<h4>{{ employee.id }}</h4>
+		<h4>{{ employee.name }}</h4>
+		<h4>{{ employee.last_name }}</h4>
+		<h4>{{ employee.rut }}</h4>
+		<h4>{{ employee.email }}</h4>
+		<button class="button-edit" id="{{ employee.id }}">EDITAR</button>
+		<button class="button-delete" id="{{ employee.id }}">ELIMINAR</button>
+	{% endfor %}
+</body>
+	<script src="{% static 'serviexpress/crud-empleado.js' %}"></script>
+	<script> const csrftoken = "{{ csrf_token }}" </script>
+</html>
